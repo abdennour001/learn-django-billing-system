@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <style>
+      table {
+          border-spacing: 1rem;
+      }
+      th {
+          text-align: left;
+      }
+  </style>
+  <body>
+  <h2>Facture N° {{ facture.id }}</h2>
+  Client: {{ facture.client }}
+  <!-- on affiche les lignes de la facture -->
+  <table>
+  <tr>
+      <th>Designation</th>
+      <th>Prix (.DA)</th>
+      <th>Quantité</th>
+      <th>Fournisseur</th>
+  </tr>
+  {% for ligne in facture.lignes.all %}
+  	<tr>
+  		<td>{{ ligne.produit.designation }}</td>
+  		<td>{{ ligne.produit.prix }}</td>
+  		<td>{{ ligne.qte }}</td>
+        <td>{{ ligne.produit.fournisseur }}</td>
+  	</tr>
+  {% endfor %}
+  <tr>
+      <td><strong>Total</strong></td>
+      <td><strong>{{facture.get_total}}</strong></td>
+  </tr>
+  </table>
+  </body>
+</html>

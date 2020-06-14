@@ -18,6 +18,9 @@ class Client(models.Model):
     def __str__(self):
         return self.nom + ' ' + self.prenom
 
+    def get_chiffre(self):
+        return sum(l.get_total() for l in self.facture_set.all())
+
 
 class Fournisseur(models.Model):
     """

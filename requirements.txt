@@ -1,11 +1,17 @@
 asgiref==3.2.7
+beautifulsoup4==4.9.1
 certifi==2020.4.5.1
 chardet==3.0.4
 coreapi==2.3.3
 coreschema==0.0.4
 Django==3.0.5
+django-bootstrap-datepicker-plus==3.0.5
+django-bootstrap4==2.0.1
+django-crispy-forms==1.9.1
+django-tables2==2.3.1
 djangorestframework==3.11.0
 idna==2.9
+importlib-metadata==1.6.1
 itypes==1.1.0
 Jinja2==2.11.2
 MarkupSafe==1.1.1
@@ -13,6 +19,8 @@ mysqlclient==1.4.6
 PyMySQL==0.9.3
 pytz==2019.3
 requests==2.23.0
+soupsieve==2.0.1
 sqlparse==0.3.1
 uritemplate==3.0.1
 urllib3==1.25.8
+zipp==3.1.0

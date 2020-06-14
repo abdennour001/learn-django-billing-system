@@ -30,4 +30,6 @@ urlpatterns = [
             name='fournisseur_delete'),
     re_path(r'^fournisseur_update/(?P<pk>\d+)/$', views.FournisseurUpdateView.as_view(),
             name='fournisseur_update'),
+
+    path("dashboard/", views.Dashboard, name="dashboard")
 ]

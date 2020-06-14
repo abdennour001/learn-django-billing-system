@@ -58,7 +58,9 @@ class Facture(models.Model):
     basically sum the product of the price of a product and it quantity.
     """
     def get_total(self):
-        return self.lignes.all().aggregate(total=models.Sum(models.F("produit__prix") * models.F("qte"), output_field=models.FloatField()))['total']
+        total = self.lignes.all().aggregate(
+            total=models.Sum(models.F("produit__prix") * models.F("qte"), output_field=models.FloatField()))['total']
+        return total if total is not None else 0.0
 
 class LigneFacture(models.Model):
     produit = models.ForeignKey(Produit, on_delete=models.CASCADE)

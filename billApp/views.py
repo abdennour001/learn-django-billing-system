@@ -267,3 +267,6 @@ class FournisseurCreateView(CreateView):
         form.helper.add_input(Button('cancel', 'Annuler', css_class='btn-secondary', onclick="window.history.back()"))
         self.success_url = reverse('fournisseur_table_detail')
         return form
+
+def Dashboard(request):
+    return render(request, "bill/dashboard.html", {})

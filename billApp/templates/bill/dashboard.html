@@ -1,0 +1,42 @@
+{% extends "django_sb_admin/base.html" %}
+
+{% block sb_admin_header %}
+    <div>Bill Dashboard</div>
+{% endblock sb_admin_header %}
+
+{% block sb_admin_title %}
+    <div>Bill Dashboard</div>
+{% endblock sb_admin_title %}
+
+{% block sb_admin_breadcrumb %}
+    <i class="fa fa-dashboard"></i>
+    <a href="{% url "dashboard" %}">Bill Management</a>
+{% endblock sb_admin_breadcrumb %}
+
+{% block sb_admin_sidebar %}
+    <li class="nav-item active">
+        <a class="nav-link" href="{% url "sb_admin_dashboard" %}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "client_table_detail" %}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Clients</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "fournisseur_table_detail" %}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Fournisseurs</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url "dashboard" %}">
+            <i class="fas fa-fw fa-paperclip"></i>
+            <span>Factures</span></a>
+    </li>
+{% endblock sb_admin_sidebar %}
+
+{% block sb_admin_content %}
+
+{% endblock sb_admin_content %}

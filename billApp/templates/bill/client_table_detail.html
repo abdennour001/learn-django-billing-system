@@ -1,13 +1,9 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Clients list</title>
+{% extends "./dashboard.html" %}
+
+{% block sb_admin_content %}
     {% load bootstrap4 django_tables2 %}
     {% bootstrap_css %} {# Embed Bootstrap CSS #}
     {% bootstrap_javascript jquery='full' %} {# Embed Bootstrap JS+jQuery #}
-</head>
-<body>
 <h2>List des Clients</h2>
 <a href="{% url 'client_table_create' %}" class="btn btn-primary">Ajouter Client</a>
 <br><br>
@@ -15,5 +11,4 @@
     <!-- on affiche les lignes de la facture -->
     {% render_table table %}
 </div>
-</body>
-</html>
+{% endblock sb_admin_content %}

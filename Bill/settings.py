@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'django_tables2',
     'bootstrap4',
     'crispy_forms',
+    'django_sb_admin',
     'bootstrap_datepicker_plus',
-    'billApp.apps.BillConfig'
+    'billApp.apps.BillConfig',
 ]
 
 MIDDLEWARE = [

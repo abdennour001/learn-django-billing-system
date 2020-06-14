@@ -19,5 +19,6 @@ from django.urls import include, path, re_path
 
 urlpatterns = [
     path('bill/', include('billApp.urls')),
+    path('django-sb-admin/', include('django_sb_admin.urls')),
     path('admin/', admin.site.urls),
 ]

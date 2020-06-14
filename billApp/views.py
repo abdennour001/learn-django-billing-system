@@ -1,6 +1,6 @@
 from bootstrap_datepicker_plus import DatePickerInput
 from django.shortcuts import render, get_object_or_404
-from billApp.models import Facture, LigneFacture, Client
+from billApp.models import Facture, LigneFacture, Client, Fournisseur
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
@@ -203,4 +203,67 @@ class FactureCreateView(CreateView):
         form.helper.add_input(Submit('submit', 'Créer', css_class='btn-primary'))
         form.helper.add_input(Button('cancel', 'Annuler', css_class='btn-secondary', onclick="window.history.back()"))
         self.success_url = reverse('client_facture_list', kwargs={'pk': self.kwargs.get('client_pk')})
+        return form
+
+
+class FournisseurTable(tables.Table):
+    action = '<a href="{% url "fournisseur_update" pk=record.id %}" class="btn btn-warning">Modifier</a>\
+            <a href="{% url "fournisseur_delete" pk=record.id %}" class="btn btn-danger">Supprimer</a>'
+
+    edit = tables.TemplateColumn(action)
+
+    class Meta:
+        model = Fournisseur
+        template_name = "django_tables2/bootstrap4.html"
+        fields = ('nom', 'prenom', 'adresse', 'tel')
+
+
+class FournisseurDetailView(TemplateView):
+    template_name = 'bill/fournisseur_table_detail.html'
+    model = Fournisseur
+
+    def get_context_data(self, **kwargs):
+        context = super(FournisseurDetailView, self).get_context_data(**kwargs)
+
+        table = FournisseurTable(Fournisseur.objects.all())
+        RequestConfig(self.request, paginate={"per_page": 2}).configure(table)
+        context['table'] = table
+        return context
+
+
+class FournisseurUpdateView(UpdateView):
+    model = Fournisseur
+    template_name = 'bill/update_client.html'
+    fields = ('nom', 'prenom', 'adresse', 'tel')
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.helper = FormHelper()
+
+        form.helper.add_input(Submit('submit', 'Modifier', css_class='btn-primary'))
+        form.helper.add_input(Button('cancel', 'Annuler', css_class='btn-secondary', onclick="window.history.back()"))
+        self.success_url = reverse('fournisseur_table_detail')
+        return form
+
+
+class FournisseurDeleteView(DeleteView):
+    model = Fournisseur
+    template_name = 'bill/delete_client.html'
+
+    def get_success_url(self):
+        return reverse('fournisseur_table_detail')
+
+
+class FournisseurCreateView(CreateView):
+    model = Fournisseur
+    template_name = 'bill/create_fournisseur.html'
+    fields = "__all__"
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.helper = FormHelper()
+
+        form.helper.add_input(Submit('submit', 'Créer', css_class='btn-primary'))
+        form.helper.add_input(Button('cancel', 'Annuler', css_class='btn-secondary', onclick="window.history.back()"))
+        self.success_url = reverse('fournisseur_table_detail')
         return form

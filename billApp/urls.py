@@ -13,8 +13,11 @@ urlpatterns = [
 
     # urls for client
     path('client_table_detail/', views.ClientDetailView.as_view(), name='client_table_detail'),
+    path('fournisseur_table_detail/', views.FournisseurDetailView.as_view(), name='fournisseur_table_detail'),
     re_path(r'^client_table_create/$', views.ClientCreateView.as_view(),
             name='client_table_create'),
+    re_path(r'^fournisseur_table_create/$', views.FournisseurCreateView.as_view(),
+            name='fournisseur_table_create'),
     re_path(r'^facture_create/(?P<client_pk>\d+)/$', views.FactureCreateView.as_view(),
             name='facture_create'),
     re_path(r'^client_facture_list/(?P<pk>\d+)/$', views.ClientFactureList.as_view(),
@@ -23,4 +26,8 @@ urlpatterns = [
             name='client_delete'),
     re_path(r'^client_update/(?P<pk>\d+)/$', views.ClientUpdateView.as_view(),
             name='client_update'),
+    re_path(r'^fournisseur_delete/(?P<pk>\d+)/$', views.FournisseurDeleteView.as_view(),
+            name='fournisseur_delete'),
+    re_path(r'^fournisseur_update/(?P<pk>\d+)/$', views.FournisseurUpdateView.as_view(),
+            name='fournisseur_update'),
 ]

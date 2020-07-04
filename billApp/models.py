@@ -1,14 +1,21 @@
 from django.db import models
 from django import utils
 import datetime
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+
+
+class User(AbstractUser):
+    pass
+
 
 class Client(models.Model):
     SEXE = (
         ('M', 'Masculin'),
         ('F', 'Feminin')
     )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     nom = models.CharField(max_length=50, null=True, blank=True)
     prenom = models.CharField(max_length=50, null=True, blank=True)
     adresse = models.TextField(null=True, blank=True)
@@ -26,6 +33,7 @@ class Fournisseur(models.Model):
     """
     Model Fournisseur
     """
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     nom = models.CharField(max_length=50, null=True, blank=True)
     prenom = models.CharField(max_length=50, null=True, blank=True)
     adresse = models.TextField(null=True, blank=True)
@@ -33,6 +41,7 @@ class Fournisseur(models.Model):
 
     def __str__(self):
         return self.nom + ' ' + self.prenom
+
 
 class Produit(models.Model):
     designation = models.CharField(max_length=50)

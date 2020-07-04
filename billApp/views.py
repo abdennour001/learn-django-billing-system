@@ -1,4 +1,5 @@
 from bootstrap_datepicker_plus import DatePickerInput
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from billApp.models import Facture, LigneFacture, Client, Fournisseur
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
@@ -268,5 +269,7 @@ class FournisseurCreateView(CreateView):
         self.success_url = reverse('fournisseur_table_detail')
         return form
 
+
+@login_required(login_url='/accounts/login/')
 def Dashboard(request):
     return render(request, "bill/dashboard.html", {})
